@@ -13,7 +13,6 @@ import blogRoute from './routes/blogRoute.js';
 const app = express();
 
 // routes reached by going to localhost:5000/
-app.use('/', homeRoute);
 app.use('/blog', blogRoute);
 
 // general setup to bodyparser so that requests can be properly sent
