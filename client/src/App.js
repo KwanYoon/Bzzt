@@ -1,8 +1,10 @@
 import React from 'react';
-import Posts from './components/posts/posts';
-import { Container, Typography, AppBar, Grow } from '@material-ui/core';
+import { Container, Typography, AppBar, Grow, Grid } from '@material-ui/core';
 import useStyles from './appStyles.js';
 import pikachu from './icons/pikachu.png';
+
+import Posts from './components/posts/posts';
+import Form from './components/form/form';
 
 const App = () => {
     const classes = useStyles();
@@ -14,8 +16,13 @@ const App = () => {
                 <img className={classes.pikachu} src={pikachu} alt="pikachu" height="60" width="60" />
             </AppBar>
             <Grow in>
-                <Container>
-                    <Posts />
+                <Container className={classes.content}>
+                    <Container className={classes.posts}>
+                        <Posts />
+                    </Container>
+                    <Container className={classes.form}>
+                        <Form />
+                    </Container>
                 </Container>
             </Grow>
         </Container>

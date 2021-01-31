@@ -16,4 +16,15 @@ export default makeStyles((theme) => ({
         borderRadius: '10px',
         marginLeft: '20px',
     },
+    content: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    posts: {
+        marginLeft: '0',
+        width: '75%',
+    },
+    form: {
+        width: '25%',
+    },
 }));
