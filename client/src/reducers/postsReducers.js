@@ -4,9 +4,11 @@ export default (posts = [], action) => {
     switch (action.type) {
         // fetches all posts
         case 'FETCH_ALL':
-            return posts;
+            // the payload for FETCH_ALL is all the posts from postsActions
+            return action.payload;
         case 'CREATE':
-            return posts;
+            // returns array of all existing posts + new post from payload
+            return [...posts, action.payload];
         default:
             return posts;
     }

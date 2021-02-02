@@ -14,7 +14,7 @@ const App = () => {
 
     // useEffect lets you preform side effects in function components
     useEffect(() => {
-        // dispatches the action for getting posts
+        // dispatches the action for getting posts, goes to reducer logic
         dispatch(getPosts());
     }, [dispatch]);
 
