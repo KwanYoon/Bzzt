@@ -12,7 +12,7 @@ export default makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'row',
     },
-    pikachu: {
+    bee: {
         borderRadius: '10px',
         marginLeft: '20px',
     },

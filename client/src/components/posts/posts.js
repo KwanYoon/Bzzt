@@ -1,9 +1,18 @@
 import React from 'react';
-import { Card } from '@material-ui/core';
+import {  Container } from '@material-ui/core';
+import useStyles from './postsStyles';
+
+import Post from './post/post';
 
 const Posts = () => {
+    const classes = useStyles();
+
     return (
-        <Card>Hello</Card>
+        <Container className={classes.mainContainer}>
+            <h1>Posts</h1>
+            <Post />
+            <Post />
+        </Container>
     )
 }
 

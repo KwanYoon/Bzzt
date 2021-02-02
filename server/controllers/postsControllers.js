@@ -6,6 +6,7 @@ import Post from '../models/postModel.js';
 // finding something takes time, so async
 export const getPosts = async (req, res) => {
     try {
+        // gets all the posts in the database
         const posts = await Post.find();
         res.status(200).json(posts);
     } catch (error) {
