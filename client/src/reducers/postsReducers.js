@@ -1,6 +1,6 @@
 // reducer for the posts
 
-export default (posts = [], action) => {
+const postActions = (posts = [], action) => {
     switch (action.type) {
         // fetches all posts
         case 'FETCH_ALL':
@@ -13,3 +13,5 @@ export default (posts = [], action) => {
             return posts;
     }
 }
+
+export default postActions;

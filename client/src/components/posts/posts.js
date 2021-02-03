@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
+import { Container, CircularProgress, Grid } from '@material-ui/core';
 import useStyles from './postsStyles';
 import { useSelector } from 'react-redux'; // Allows access to the global store
 
@@ -14,11 +14,18 @@ const Posts = () => {
     console.log(posts);
 
     return (
-        <Container className={classes.mainContainer}>
-            <h1>Posts</h1>
-            <Post />
-            <Post />
-        </Container>
+        // if no posts, spinning circle
+        // If there are posts, loop through the posts and return
+        //   each post separately into post.js
+        (posts.length === 0) ? <CircularProgress /> : (
+            <Container className={classes.mainContainer}>
+                {posts.map((post) => (
+                    <Grid key={post._id}>
+                        <Post post={post} />
+                    </Grid>
+                ))}
+            </Container>
+        )
     )
 }
 
