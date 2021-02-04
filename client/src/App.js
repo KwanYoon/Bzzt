@@ -7,6 +7,7 @@ import useStyles from './appStyles.js';
 import bee from './icons/bee.png';
 import Posts from './components/posts/posts';
 import Form from './components/form/form';
+import './index.css';
 
 const App = () => {
     const classes = useStyles();
