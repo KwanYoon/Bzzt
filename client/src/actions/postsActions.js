@@ -28,7 +28,21 @@ export const createPost = (newPost) => async (dispatch) => {
 
         // dispatches action to the store
         dispatch({ type: 'CREATE', payload: data });
+        
     } catch (error) {
-        console.log(error)
+        console.log(error);
+    }
+}
+
+export const reversePosts = (reverse) => async (dispatch) => {
+    try {
+        const { data } = await api.fetchPosts();
+        if (reverse) {
+            dispatch({ type: 'FETCH_ALL', payload: data });
+        } else {
+            dispatch({ type: 'FETCH_ALL', payload: data.reverse() });
+        }
+    } catch (error) {
+        console.log(error);
     }
 }

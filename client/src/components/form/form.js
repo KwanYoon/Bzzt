@@ -11,6 +11,7 @@ const Form = () => {
     // postData is current state, and setPostData allows updating the state
     const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: ''});
     const dispatch = useDispatch();
+    const classes = useStyles();
 
     // handler functions
     const handleSubmit = (e) => {
@@ -26,7 +27,7 @@ const Form = () => {
     }
 
     return (
-        <Card>
+        <Card className={classes.mainCard}>
             <form autoComplete="off" noValidate onSubmit={handleSubmit}>
                 <Typography variant="h6">Create a Post</Typography>
                 <TextField 
