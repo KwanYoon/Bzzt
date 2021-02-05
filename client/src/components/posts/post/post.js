@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, CardMedia } from '@material-ui/core';
+import { Card, CardMedia, Button } from '@material-ui/core';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 
 import useStyles from './postStyles';
@@ -18,6 +19,9 @@ const Post = ({ post }) => {
                     <h5>{moment(post.createdAt).fromNow()}</h5>
                     <h4>{post.message}</h4>
                     <h4>{post.tags.map((tag) => `#${tag} `)}</h4>
+                    <Button style={{color: 'white'}}>
+                        <MoreHorizIcon />
+                    </Button>
                 </div>
             </Card>
             <hr className={classes.line} />

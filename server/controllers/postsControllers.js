@@ -30,3 +30,20 @@ export const createPost = async (req, res) => {
         res.status(409).json({ message: error.message });
     }
 };
+
+export const updatePost = async (req, res) => {
+    // because we set /:id in routes, the id will be in req.params
+    const { id: _id } = req.params;
+
+    // updated post sent from frontend
+    const updatedPost = req.body;
+
+    // Checking if mongoose object with the given id exists
+    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No posts with that id');
+
+    // Finds the id and updates the post with the given updatedPost
+    const updating = await Post.findByIdAndUpdate(_id, updatedPost, { new: true });
+
+    // Sends the json composed of the data
+    res.json(updating);
+};
