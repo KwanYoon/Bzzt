@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'; // Allows access to the 
 import Post from './post/post';
 import { reversePosts } from './../../actions/postsActions';
 
-const Posts = () => {
+const Posts = ({ setCurrentId }) => {
     // from the store (state), grab posts (.posts)
     // name of the posts is from indexReducers
     const posts = useSelector((state) => state.posts);
@@ -31,7 +31,7 @@ const Posts = () => {
                 <Button onClick={buttonNewFirst} />
                 {posts.map((post) => (  
                     <Grid key={post._id}>
-                        <Post post={post} />
+                        <Post post={post} setCurrentId={setCurrentId} />
                     </Grid>
                 ))}
             </Container>

@@ -6,7 +6,7 @@ import moment from 'moment';
 import useStyles from './postStyles';
 
 // receives post from posts.js and adds logic to the data
-const Post = ({ post }) => {
+const Post = ({ post, setCurrentId }) => {
     const classes = useStyles();
 
     return (
@@ -19,7 +19,7 @@ const Post = ({ post }) => {
                     <h5>{moment(post.createdAt).fromNow()}</h5>
                     <h4>{post.message}</h4>
                     <h4>{post.tags.map((tag) => `#${tag} `)}</h4>
-                    <Button style={{color: 'white'}}>
+                    <Button style={{color: 'white'}} onClick={() => setCurrentId(post._id)}>
                         <MoreHorizIcon />
                     </Button>
                 </div>

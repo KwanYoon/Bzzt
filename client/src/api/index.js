@@ -11,3 +11,6 @@ export const fetchPosts = () => axios.get(url);
 
 // Posts the new post into the backend url
 export const createPost = (newPost) => axios.post(url, newPost);
+
+// Updates post and sends to backend url/id
+export const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updatedPost);

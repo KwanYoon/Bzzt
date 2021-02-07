@@ -1,29 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, TextField, Button, Typography } from '@material-ui/core';
 import FileBase from 'react-file-base64';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import useStyles from './formStyles';
-import { createPost } from './../../actions/postsActions';
+import { createPost, updatePost } from './../../actions/postsActions';
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
     // postData object
     // postData is current state, and setPostData allows updating the state
-    const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: ''});
+    const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: ''});
+    // if there is a currentId, then find the post, if not, return null
+    const post = useSelector((state) => currentId ? state.posts.find((post) => post._id === currentId) : null);
     const dispatch = useDispatch();
     const classes = useStyles();
+
+    // when 'post' changes, run this side effect
+    useEffect(() => {
+        if(post) setPostData(post);
+    }, [post]);
 
     // handler functions
     const handleSubmit = (e) => {
         // prevents browser refreshing
         e.preventDefault();
 
-        // dispatches submit action of the data
-        dispatch(createPost(postData));
+        if (currentId) {
+            // dispatches the updated post if currentid present
+            dispatch(updatePost(currentId, postData));
+        } else {
+            // dispatches submit action of the data
+            dispatch(createPost(postData));
+        }
+
+        clear();
     }
 
     const clear = () => {
-
+        setCurrentId(null);
+        setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: ''});
     }
 
     return (

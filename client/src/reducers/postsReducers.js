@@ -9,6 +9,8 @@ const postActions = (posts = [], action) => {
         case 'CREATE':
             // returns array of all existing posts + new post from payload
             return [...posts, action.payload];
+        case 'UPDATE':
+            return posts.map((post) => post._id === action.payload._id ? action.payload : post);
         default:
             return posts;
     }

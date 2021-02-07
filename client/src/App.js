@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Typography, AppBar, Grow } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
@@ -10,6 +10,8 @@ import Form from './components/form/form';
 import './index.css';
 
 const App = () => {
+    // brings in currentId from state in App as both form and posts use it
+    const [currentId, setCurrentId] = useState(null);
     const classes = useStyles();
     const dispatch = useDispatch();
 
@@ -17,7 +19,8 @@ const App = () => {
     useEffect(() => {
         // dispatches the action for getting posts, goes to reducer logic
         dispatch(getPosts());
-    }, [dispatch]);
+        // when currentId changed (cleared in form), dispatches getPosts()
+    }, [currentId, dispatch]);
 
     return (
         <Container maxwidth="lg">
@@ -28,10 +31,10 @@ const App = () => {
             <Grow in>
                 <Container className={classes.content}>
                     <Container className={classes.posts}>
-                        <Posts />
+                        <Posts setCurrentId={setCurrentId} />
                     </Container>
                     <Container className={classes.form}>
-                        <Form />
+                        <Form currentId={currentId} setCurrentId={setCurrentId} />
                     </Container>
                 </Container>
             </Grow>
