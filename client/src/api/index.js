@@ -14,3 +14,6 @@ export const createPost = (newPost) => axios.post(url, newPost);
 
 // Updates post and sends to backend url/id
 export const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updatedPost);
+
+// Deletes posts
+export const deletePost = (id) => axios.delete(`${url}/${id}`);

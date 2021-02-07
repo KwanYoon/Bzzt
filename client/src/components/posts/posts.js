@@ -27,8 +27,8 @@ const Posts = ({ setCurrentId }) => {
         //   each post separately into post.js
         (posts.length === 0) ? <CircularProgress /> : (
             <Container className={classes.mainContainer}>
-                <Button onClick={buttonOldFirst} />
-                <Button onClick={buttonNewFirst} />
+                <Button onClick={buttonOldFirst}>Oldest First</Button>
+                <Button onClick={buttonNewFirst}>Newest First</Button>
                 {posts.map((post) => (  
                     <Grid key={post._id}>
                         <Post post={post} setCurrentId={setCurrentId} />

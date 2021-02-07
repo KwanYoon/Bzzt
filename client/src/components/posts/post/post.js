@@ -2,12 +2,15 @@ import React from 'react';
 import { Card, CardMedia, Button } from '@material-ui/core';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
 
 import useStyles from './postStyles';
+import { deletePost } from '../../../actions/postsActions';
 
 // receives post from posts.js and adds logic to the data
 const Post = ({ post, setCurrentId }) => {
     const classes = useStyles();
+    const dispatch = useDispatch();
 
     return (
         <div>
@@ -22,6 +25,7 @@ const Post = ({ post, setCurrentId }) => {
                     <Button style={{color: 'white'}} onClick={() => setCurrentId(post._id)}>
                         <MoreHorizIcon />
                     </Button>
+                    <Button style={{color: 'white'}} onClick={() => dispatch(deletePost(post._id))}>Delete</Button>
                 </div>
             </Card>
             <hr className={classes.line} />

@@ -4,7 +4,7 @@ import FileBase from 'react-file-base64';
 import { useSelector, useDispatch } from 'react-redux';
 
 import useStyles from './formStyles';
-import { createPost, updatePost } from './../../actions/postsActions';
+import { getPosts, createPost, updatePost } from './../../actions/postsActions';
 
 const Form = ({ currentId, setCurrentId }) => {
     // postData object
@@ -28,6 +28,7 @@ const Form = ({ currentId, setCurrentId }) => {
         if (currentId) {
             // dispatches the updated post if currentid present
             dispatch(updatePost(currentId, postData));
+            dispatch(getPosts());
         } else {
             // dispatches submit action of the data
             dispatch(createPost(postData));
