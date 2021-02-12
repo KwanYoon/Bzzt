@@ -25,4 +25,8 @@ export default makeStyles((theme) => ({
         backgroundColor: "black",
         width: "90%",
     },
+    button: {
+        paddingBottom: "175px",
+        paddingRight: "50px",
+    },
 }));

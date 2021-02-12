@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, TextField, Button, Typography } from '@material-ui/core';
+import { Paper, TextField, Button, Typography } from '@material-ui/core';
 import FileBase from 'react-file-base64';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -43,8 +43,8 @@ const Form = ({ currentId, setCurrentId }) => {
     }
 
     return (
-        <Card className={classes.mainCard}>
-            <form autoComplete="off" noValidate onSubmit={handleSubmit}>
+        <Paper className={classes.paper}>
+            <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography variant="h6">Create a Post</Typography>
                 <TextField 
                     name="creator" 
@@ -78,19 +78,19 @@ const Form = ({ currentId, setCurrentId }) => {
                     label="Tags" 
                     fullWidth 
                     value={postData.tags} 
-                    onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',')})} 
+                    onChange={(e) => setPostData({ ...postData, tags: e.target.value.replace(/\s/g, '').split(',')})} 
                 />
-                <div>
+                <div className={classes.fileInput}>
                     <FileBase 
                         type="file"
                         multiple={false}
                         onDone={({base64}) => setPostData({ ...postData, selectedFile: base64 })}
                     />
                 </div>
-                <Button type="submit">Submit</Button>
-                <Button onClick={clear}>Clear</Button>
+                <Button className={classes.buttonSubmit} fullWidth color="primary" variant="contained" type="submit">Submit</Button>
+                <Button onClick={clear} fullWidth color="secondary" variant="contained">Clear</Button>
             </form>
-        </Card>
+        </Paper>
     )
 }
 

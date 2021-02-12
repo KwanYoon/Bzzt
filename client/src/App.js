@@ -30,11 +30,12 @@ const App = () => {
             </AppBar>
             <Grow in>
                 <Container className={classes.content}>
-                    <Container className={classes.posts}>
-                        <Posts setCurrentId={setCurrentId} />
-                    </Container>
                     <Container className={classes.form}>
                         <Form currentId={currentId} setCurrentId={setCurrentId} />
+                    </Container>
+                    <hr className={classes.line} />
+                    <Container className={classes.posts}>
+                        <Posts setCurrentId={setCurrentId} />
                     </Container>
                 </Container>
             </Grow>

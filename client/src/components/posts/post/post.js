@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardMedia, Button } from '@material-ui/core';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 
@@ -22,11 +21,9 @@ const Post = ({ post, setCurrentId }) => {
                     <h5>{moment(post.createdAt).fromNow()}</h5>
                     <h4>{post.message}</h4>
                     <h4>{post.tags.map((tag) => `#${tag} `)}</h4>
-                    <Button style={{color: 'white'}} onClick={() => setCurrentId(post._id)}>
-                        <MoreHorizIcon />
-                    </Button>
-                    <Button style={{color: 'white'}} onClick={() => dispatch(deletePost(post._id))}>Delete</Button>
                 </div>
+                <Button style={{color: 'white'}} onClick={() => setCurrentId(post._id)} className={classes.button}>EDIT</Button>
+                <Button style={{color: 'white'}} onClick={() => dispatch(deletePost(post._id))} className={classes.button}>Delete</Button>
             </Card>
             <hr className={classes.line} />
         </div>
