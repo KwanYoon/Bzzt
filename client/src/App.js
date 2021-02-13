@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Typography, AppBar, Grow } from '@material-ui/core';
+import { Container, Typography, AppBar, Grow, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
 import { getPosts } from './actions/postsActions';
@@ -30,6 +30,7 @@ const App = () => {
             </AppBar>
             <Grow in>
                 <Container className={classes.content}>
+                    <Button onClick={this.toggleForm.bind(this)}>Toggle form</Button>
                     <Container className={classes.form}>
                         <Form currentId={currentId} setCurrentId={setCurrentId} />
                     </Container>
