@@ -22,6 +22,10 @@ const App = () => {
         // when currentId changed (cleared in form), dispatches getPosts()
     }, [currentId, dispatch]);
 
+    const toggleForm = () => {
+
+    }
+
     return (
         <Container maxwidth="lg">
             <AppBar className={classes.navBar} position="static">
@@ -30,8 +34,8 @@ const App = () => {
             </AppBar>
             <Grow in>
                 <Container className={classes.content}>
-                    <Button onClick={this.toggleForm.bind(this)}>Toggle form</Button>
-                    <Container className={classes.form}>
+                    <Button onClick={toggleForm}>Toggle form</Button>
+                    <Container className={classes.form} style={{display: "block"}}>
                         <Form currentId={currentId} setCurrentId={setCurrentId} />
                     </Container>
                     <hr className={classes.line} />
