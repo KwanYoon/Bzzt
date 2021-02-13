@@ -9,7 +9,40 @@ import Posts from './components/posts/posts';
 import Form from './components/form/form';
 import './index.css';
 
+const hide = {
+    hidden: {
+        display: "none"
+    },
+    nonHidden: {
+        display: "block"
+    },
+}
+
+const HideContext = React.createContext(hide.hidden);
+
 const App = () => {
+    const classes = useStyles();
+    const [stateHide, setHide] = React.useState("hidden");
+
+    return (
+        <Container maxwidth="lg">
+            <AppBar className={classes.navBar} position="static">
+                <Typography align="center" variant="h2">Bzzt</Typography>
+                <img className={classes.bee} src={bee} alt="bee" height="60" width="60" />
+            </AppBar>
+            <Grow in>
+                <Container className={classes.content}>
+                    <HideContext.Provider value={{ hide: hide[stateHide], setHide }}>
+                        <FormPost />
+                    </HideContext.Provider>
+                </Container>
+            </Grow>
+        </Container>
+    )
+}
+
+const FormPost = () => {
+    const { hide } = React.useContext(HideContext);
     // brings in currentId from state in App as both form and posts use it
     const [currentId, setCurrentId] = useState(null);
     const classes = useStyles();
@@ -22,29 +55,38 @@ const App = () => {
         // when currentId changed (cleared in form), dispatches getPosts()
     }, [currentId, dispatch]);
 
-    const toggleForm = () => {
+    return (
+        <div>
+            <Container>
+                <FormToggle />
+            </Container>
+            <Container className={classes.form} style={{display: hide.display}}>
+                <Form currentId={currentId} setCurrentId={setCurrentId} />
+            </Container>
+            <hr className={classes.line} />
+            <Container className={classes.posts}>
+                <Posts setCurrentId={setCurrentId} />
+            </Container>
+        </div>
+    )
+}
 
+const FormToggle = () => {
+    const { setHide } = React.useContext(HideContext);
+
+    const hideButton = () => {
+        setHide("hidden")
+    }
+
+    const unHideButton = () => {
+        setHide("nonHidden");
     }
 
     return (
-        <Container maxwidth="lg">
-            <AppBar className={classes.navBar} position="static">
-                <Typography align="center" variant="h2">Bzzt</Typography>
-                <img className={classes.bee} src={bee} alt="bee" height="60" width="60" />
-            </AppBar>
-            <Grow in>
-                <Container className={classes.content}>
-                    <Button onClick={toggleForm}>Toggle form</Button>
-                    <Container className={classes.form} style={{display: "block"}}>
-                        <Form currentId={currentId} setCurrentId={setCurrentId} />
-                    </Container>
-                    <hr className={classes.line} />
-                    <Container className={classes.posts}>
-                        <Posts setCurrentId={setCurrentId} />
-                    </Container>
-                </Container>
-            </Grow>
-        </Container>
+        <div>
+            <Button onClick={hideButton}>Hide Form</Button>
+            <Button onClick={unHideButton}>Show Form</Button>
+        </div>
     )
 }
 

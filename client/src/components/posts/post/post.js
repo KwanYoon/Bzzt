@@ -4,7 +4,7 @@ import moment from 'moment';
 import { useDispatch } from 'react-redux';
 
 import useStyles from './postStyles';
-import { deletePost } from '../../../actions/postsActions';
+import { deletePost, likePost } from '../../../actions/postsActions';
 
 // receives post from posts.js and adds logic to the data
 const Post = ({ post, setCurrentId }) => {
@@ -22,6 +22,7 @@ const Post = ({ post, setCurrentId }) => {
                     <h4>{post.message}</h4>
                     <h4>{post.tags.map((tag) => `#${tag} `)}</h4>
                 </div>
+                <Button style={{color: 'white'}} onClick={() => dispatch(likePost(post._id))} className={classes.button}>Like {post.likeCount}</Button>
                 <Button style={{color: 'white'}} onClick={() => setCurrentId(post._id)} className={classes.button}>EDIT</Button>
                 <Button style={{color: 'white'}} onClick={() => dispatch(deletePost(post._id))} className={classes.button}>Delete</Button>
             </Card>
