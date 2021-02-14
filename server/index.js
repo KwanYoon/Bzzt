@@ -3,12 +3,16 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 // route imports
 import postRoutes from './routes/postsRoutes.js';
 
 // Initializing app
 const app = express();
+
+// calling env file
+dotenv.config();
 
 // parses incoming request bodies in a middleware before your handlers
 //   available under req.body property
@@ -22,13 +26,13 @@ app.use(cors());
 app.use("/posts", postRoutes);
 
 // URL for the connection to the database on MongoDB
-const CONNECTION_URL = 'mongodb+srv://KwanYoon:yoon8800@cluster0.hrvfa.mongodb.net/<dbname>?retryWrites=true&w=majority';
+// CONNECTION_URL
 
 // Port to heroku (temporarily port 5000)
 const PORT = process.env.PORT || 5000;
 
 // Connect to database / port
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
     .catch((error) => console.log(error));
 

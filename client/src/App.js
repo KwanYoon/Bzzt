@@ -20,27 +20,6 @@ const hide = {
 
 const HideContext = React.createContext(hide.hidden);
 
-const App = () => {
-    const classes = useStyles();
-    const [stateHide, setHide] = React.useState("hidden");
-
-    return (
-        <Container maxwidth="lg">
-            <AppBar className={classes.navBar} position="static">
-                <Typography align="center" variant="h2">Bzzt</Typography>
-                <img className={classes.bee} src={bee} alt="bee" height="60" width="60" />
-            </AppBar>
-            <Grow in>
-                <Container className={classes.content}>
-                    <HideContext.Provider value={{ hide: hide[stateHide], setHide }}>
-                        <FormPost />
-                    </HideContext.Provider>
-                </Container>
-            </Grow>
-        </Container>
-    )
-}
-
 const FormPost = () => {
     const { hide } = React.useContext(HideContext);
     // brings in currentId from state in App as both form and posts use it
@@ -87,6 +66,28 @@ const FormToggle = () => {
             <Button onClick={hideButton}>Hide Form</Button>
             <Button onClick={unHideButton}>Show Form</Button>
         </div>
+    )
+}
+
+
+const App = () => {
+    const classes = useStyles();
+    const [stateHide, setHide] = React.useState("hidden");
+
+    return (
+        <Container maxwidth="lg">
+            <AppBar className={classes.navBar} position="static">
+                <Typography align="center" variant="h2">Bzzt</Typography>
+                <img className={classes.bee} src={bee} alt="bee" height="60" width="60" />
+            </AppBar>
+            <Grow in>
+                <Container className={classes.content}>
+                    <HideContext.Provider value={{ hide: hide[stateHide], setHide }}>
+                        <FormPost />
+                    </HideContext.Provider>
+                </Container>
+            </Grow>
+        </Container>
     )
 }
 

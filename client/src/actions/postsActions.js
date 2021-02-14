@@ -1,3 +1,6 @@
+// import action types
+import { FETCH_ALL, DELETE, UPDATE, CREATE, LIKE } from '../constants/actionTypes';
+
 // import everything from actions as API
 import * as api from '../api';
 
@@ -12,7 +15,7 @@ export const getPosts = () => async (dispatch) => {
 
         // action needs type
         // payload is the property that holds actual data in a redux action object
-        const action = { type: 'FETCH_ALL', payload: data }
+        const action = { type: FETCH_ALL, payload: data }
 
         // dispatching action to the store
         dispatch(action);
@@ -27,7 +30,7 @@ export const createPost = (newPost) => async (dispatch) => {
         const { data } = await api.createPost(newPost);
 
         // dispatches action to the store
-        dispatch({ type: 'CREATE', payload: data });
+        dispatch({ type: CREATE, payload: data });
         
     } catch (error) {
         console.log(error);
@@ -38,9 +41,9 @@ export const reversePosts = (reverse) => async (dispatch) => {
     try {
         const { data } = await api.fetchPosts();
         if (reverse) {
-            dispatch({ type: 'FETCH_ALL', payload: data });
+            dispatch({ type: FETCH_ALL, payload: data });
         } else {
-            dispatch({ type: 'FETCH_ALL', payload: data.reverse() });
+            dispatch({ type: FETCH_ALL, payload: data.reverse() });
         }
     } catch (error) {
         console.log(error);
@@ -50,7 +53,7 @@ export const reversePosts = (reverse) => async (dispatch) => {
 export const updatePost = (id, updatedPost) => async (dispatch) => {
     try {
         const { data } = await api.updatePost(id, updatedPost);
-        dispatch({ type: 'UPDATE', payload: data });
+        dispatch({ type: UPDATE, payload: data });
     } catch (error) {
         console.log(error);
     }
@@ -59,7 +62,7 @@ export const updatePost = (id, updatedPost) => async (dispatch) => {
 export const deletePost = (id) => async (dispatch) => {
     try {
         await api.deletePost(id);
-        dispatch({ type: 'DELETE', payload: id });
+        dispatch({ type: DELETE, payload: id });
     } catch (error) {
         console.log(error);
     }
@@ -68,7 +71,7 @@ export const deletePost = (id) => async (dispatch) => {
 export const likePost = (id) => async (dispatch) => {
     try {
         const { data } = await api.likePost(id);
-        dispatch({ type: 'LIKE', payload: data });
+        dispatch({ type: LIKE, payload: data });
     } catch (error) {
         console.log(error);
     }
