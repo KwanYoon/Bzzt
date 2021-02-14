@@ -25,6 +25,10 @@ app.use(cors());
 // routes (suffix, route)
 app.use("/posts", postRoutes);
 
+app.get('/', (req, res) => {
+    res.send('Hello Bzzt');
+});
+
 // URL for the connection to the database on MongoDB
 // CONNECTION_URL
 

@@ -4,7 +4,7 @@
 import axios from 'axios';
 
 // url to backend
-const url = 'http://localhost:5000/posts';
+const url = 'https://bzzt-social-media.herokuapp.com/posts';
 
 // Gets all posts in the database
 export const fetchPosts = () => axios.get(url);
