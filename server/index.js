@@ -25,6 +25,7 @@ app.use(cors());
 // routes (suffix, route)
 app.use("/posts", postRoutes);
 
+// Heroku testing at /
 app.get('/', (req, res) => {
     res.send('Hello Bzzt');
 });
