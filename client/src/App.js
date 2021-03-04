@@ -77,7 +77,7 @@ const App = () => {
     return (
         <Container maxwidth="lg">
             <AppBar className={classes.navBar} position="static">
-                <Typography align="center" variant="h2">Bzzt</Typography>
+                <Typography align="center" variant="h2"> Bzzt</Typography>
                 <img className={classes.bee} src={bee} alt="bee" height="60" width="60" />
             </AppBar>
             <Grow in>
