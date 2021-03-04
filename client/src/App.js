@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Typography, AppBar, Grow, Button } from '@material-ui/core';
+import { Container, Grow, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { getPosts } from './actions/postsActions';
 import useStyles from './appStyles.js';
-import bee from './icons/bee.png';
+
 import Posts from './components/posts/posts';
 import Form from './components/form/form';
+import Navbar from './components/navbar/navbar';
+import Auth from './components/auth/auth';
 import './index.css';
 
 const hide = {
@@ -69,25 +72,33 @@ const FormToggle = () => {
     )
 }
 
-
-const App = () => {
+const Home = () => {
     const classes = useStyles();
     const [stateHide, setHide] = React.useState("hidden");
 
     return (
-        <Container maxwidth="lg">
-            <AppBar className={classes.navBar} position="static">
-                <Typography align="center" variant="h2"> Bzzt</Typography>
-                <img className={classes.bee} src={bee} alt="bee" height="60" width="60" />
-            </AppBar>
-            <Grow in>
-                <Container className={classes.content}>
-                    <HideContext.Provider value={{ hide: hide[stateHide], setHide }}>
-                        <FormPost />
-                    </HideContext.Provider>
-                </Container>
-            </Grow>
-        </Container>
+        <Grow in>
+            <Container className={classes.content}>
+                <HideContext.Provider value={{ hide: hide[stateHide], setHide }}>
+                    <FormPost />
+                </HideContext.Provider>
+            </Container>
+        </Grow>
+    )
+}
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Container maxwidth="lg">
+                <Navbar />
+                <Switch>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/auth" exact component={Auth} />
+                </Switch>
+                
+            </Container>
+        </BrowserRouter>
     )
 }
 
