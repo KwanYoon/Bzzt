@@ -24,12 +24,12 @@ export default makeStyles((theme) => ({
     toolbar: {
         display: 'flex',
         justifyContent: 'flex-end',
-        width: '400px',
+        width: '40vw',
     },
     profile: {
         display: 'flex',
         justifyContent: 'space-between',
-        width: '400px',
+        width: '20vw',
     },
     userName: {
         display: 'flex',
