@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 
 // route imports
 import postRoutes from './routes/postsRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 // Initializing app
 const app = express();
@@ -24,6 +25,7 @@ app.use(cors());
 
 // routes (suffix, route)
 app.use("/posts", postRoutes);
+app.use('/user', userRoutes);
 
 // Heroku testing at /
 app.get('/', (req, res) => {

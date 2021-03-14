@@ -8,24 +8,37 @@ import { useHistory } from 'react-router-dom';
 import useStyles from './authStyles';
 import Input from './input';
 import Icon from './icon';
+import { signin, signup } from '../../actions/authActions';
+
+const initialState = { email: '', password: '', confirmPassword: '', firstName: '', lastName: '' };
 
 const Auth = () => {
     const classes = useStyles();
     const history = useHistory();
-    const [showPassword, setShowPassword] = useState(false);
     const dispatch = useDispatch();
 
+    // password toggle
+    const [showPassword, setShowPassword] = useState(false);
+    // sign in form data
+    const [formData, setFormData] = useState(initialState);
     // checking if signup or signin
     const [isSignup, setIsSignup] = useState(false);
 
     // when pressed submit on form...
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
+        if (isSignup) {
+            dispatch(signup(formData, history));
+        } else {
+            dispatch(signin(formData, history));
+        }
     };
     
-    // when changed...
-    const handleChange = () => {
-
+    // when input changed...
+    const handleChange = (e) => {
+        // setting form with name to target value
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);

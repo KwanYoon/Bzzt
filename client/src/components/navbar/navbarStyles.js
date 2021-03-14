@@ -8,7 +8,7 @@ export default makeStyles((theme) => ({
         alignItems: 'center',
         margin: '40px 0',
         justifyContent: 'center',
-        color: '#dac400',
+        color: 'white',
         borderRadius: '20px',
         display: 'flex',
         flexDirection: 'row',
