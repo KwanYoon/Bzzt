@@ -3,6 +3,8 @@ Bzzt, a social media web application made using the MERN stack. Utilizes Redux f
 
 Lets users create, read, update, and delete their posts!
 
+Can be found on https://bzzt.netlify.app/!
+
 ***Front page***
 
 ![socialmedia_frontpage](https://user-images.githubusercontent.com/47330978/117525277-700cc000-af8f-11eb-90e2-15959654d839.png)
